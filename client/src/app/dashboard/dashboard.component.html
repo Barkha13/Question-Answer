@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Welcome {{login_name}}</h1>
+  <a [routerLink]="['/new_que']">Add a Question</a>
+  <a href="/" style="margin-left: 1000px;">Logout</a>
+  <br><br><br>
+  <form>
+    Search: <input type="text" name="search">
+  </form>
+  <br><br>
+  <table style="border : 1px solid black;">
+    <tr>
+      <td>
+        Question
+      </td>
+      <td>
+        Answers
+      </td>
+      <td>
+        Action
+      </td>
+    </tr>
+    <tr *ngFor='let que of questions'>
+      <td>
+        {{que.question}}
+      </td>
+      <td>
+          {{que.answers.length}}
+      </td>
+      <td>
+        <a>Show</a>
+        &nbsp;&nbsp;
+        <a>Answer</a>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

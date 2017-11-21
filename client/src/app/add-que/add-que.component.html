@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <a [routerLink]="['/dashboard']">Home</a>
+    <a href="/" style="margin-left: 1000px;">Logout</a>
+    <br><br><br>
+    <h1>New Question</h1>
+    <br><br><br>
+    <div style="width: 500px;">
+    <form #addForm = "ngForm" style="text-align:right;" (ngSubmit)="onSubmit()" method="post">
+      Question: <textarea 
+      name="question"
+      required
+      minlength="3"
+      [(ngModel)] = '_question.quest'
+      #question = 'ngModel' 
+      ></textarea>
+      <span style="color:red" *ngIf="!question.valid">Question is required!!(At least 10 Characters)</span><br><br>
+      
+      <br>
+      Description(optional): <textarea 
+      name="description"
+      [(ngModel)] = '_question.desc'
+      ></textarea><br>
+      <button name="cancel" >Cancel</button>&nbsp;
+      <button type="submit" name="submit" [disabled]="!addForm.valid">Submit</button>
+      
+    </form>
+    </div>
+  </div>
+</body>
+</html>

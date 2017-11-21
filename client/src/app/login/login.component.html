@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h1>Q&A</h1><br><br><br><br><br>
+  <form #myform='ngForm' (ngSubmit) = "onClick()" method="post">
+    Name: <input
+    type='text'
+    name='name'
+    required
+    minlength="3"
+    [(ngModel)] = 'user.login_name'
+    #name = 'ngModel' 
+    >
+    <span style="color:red" *ngIf="!name.valid">Name is required!!(At least 3 characters)</span><br><br>
+    <button type="submit" name="submit" [disabled]="!myform.valid">Enter!!</button>
+    </form>
+  </div>
+</body>
+</html>
