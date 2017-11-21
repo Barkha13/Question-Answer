@@ -28,6 +28,14 @@ module.exports = {
                 console.log('added question in db...');
             }
         })
+    },
+
+    showAns : function(req,res){
+        console.log('in cont showAns',req.params.id);
+        Question.findOne({_id:req.params.id},function(err, question){
+            console.log(question);
+            res.json(question);
+        })
     }
   
 }

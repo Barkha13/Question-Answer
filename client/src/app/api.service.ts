@@ -44,5 +44,16 @@ export class ApiService {
     )
   }
 
+  showAns(id,callback){
+    return this._http.get(`/show_ans/${id}`)
+    .subscribe(
+      (response) => {
+        callback(response.json());
+      },
+      (err) => {
+        console.log('error is..',err);
+      }
+    )
+  }
 
 }

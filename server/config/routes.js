@@ -12,5 +12,10 @@ module.exports = function(app){
         console.log('display all the questions');
         questions.show(req,res);
     });
+
+    app.get('/show_ans/:id',function(req,res){
+        console.log('show answer');
+        questions.showAns(req,res);
+    })
     
 }
