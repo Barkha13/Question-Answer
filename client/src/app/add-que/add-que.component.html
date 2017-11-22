@@ -30,7 +30,7 @@
       name="description"
       [(ngModel)] = '_question.desc'
       ></textarea><br>
-      <button name="cancel" >Cancel</button>&nbsp;
+      <button name="cancel" [routerLink]="['/dashboard']">Cancel</button>&nbsp;
       <button type="submit" name="submit" [disabled]="!addForm.valid">Submit</button>
       
     </form>

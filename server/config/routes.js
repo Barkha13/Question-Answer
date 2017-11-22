@@ -16,6 +16,16 @@ module.exports = function(app){
     app.get('/show_ans/:id',function(req,res){
         console.log('show answer');
         questions.showAns(req,res);
+    });
+
+    app.post('/answer/:q_id', function(req,res){
+        console.log('inside add ans routes...');
+        questions.addAns(req,res);
+    });
+
+    app.get('/like/:ans_id',function(req,res){
+        console.log('inside like route...',req.params.ans_id)
+        questions.addLike(req,res);
     })
     
 }

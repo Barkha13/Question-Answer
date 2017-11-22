@@ -56,4 +56,29 @@ export class ApiService {
     )
   }
 
+  addAns(ans, detail, answerer, q_id){
+    console.log('inside services...',ans,detail,answerer,q_id);
+    this._http.post(`/answer/${q_id}`,{answer: ans, detail:detail, answerer : answerer})
+    .subscribe(
+      (response) => {
+        console.log('added answer...');
+      },
+      (err) => {
+        console.log('Error in adding answer...');
+      }
+    )
+  }
+
+  like(answer_id){
+    console.log('inside like');
+    return this._http.get(`/like/${answer_id}`)
+    .subscribe(
+      (response) => {
+        console.log('added like...');
+      },
+      (err) => {
+        console.log('Error in adding like...');
+      }
+    )
+  }
 }

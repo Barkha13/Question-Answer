@@ -8,10 +8,19 @@
 </head>
 <body>
   <a [routerLink]="['/dashboard']">Home</a>&nbsp;&nbsp; <a>|</a>
-  <a>Answer this question</a>
+  <a [routerLink]="['/answer',question._id]">Answer this question</a>
   <a href="/" style="margin-left:1000px;">Logout</a>
   <br><br>
   <h1>Question :{{question.question}}</h1>
   <h3>Description : {{question.description}}</h3>
+
+  <div *ngFor = "let answer of question.answers">
+      <p>{{answer.answerer}}</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer: {{answer.answer}}</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Details: {{answer.detail}}</p>
+    <p>{{answer.likes}}</p>
+    <button name="like" (click)="onClick(answer._id)">Like</button>
+    <hr>
+  </div>
 </body>
 </html>

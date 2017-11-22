@@ -9,12 +9,16 @@ import { ApiService} from './../api.service';
 })
 export class ShowComponent implements OnInit {
 
+  questions;
   userId;
   question;
 
-  constructor(private activatedRoute: ActivatedRoute, private _apiService : ApiService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private _apiService : ApiService, private router: Router) { 
+    
+  }
 
   ngOnInit() {
+    
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['id'];
       console.log(this.userId);
@@ -22,8 +26,19 @@ export class ShowComponent implements OnInit {
     
     this.question = this._apiService.showAns(this.userId,(data)=>{
       this.question = data;
-      console.log('the question got back is', this.question);
+      console.log('the question is', this.question);
     });
-  
+
+    this._apiService.allQues((data)=>{
+      console.log(data);
+      this.questions = data;
+    });
+  }
+
+  onClick(answer_id){
+   
+    this._apiService.like(answer_id);
+    this.ngOnInit();
+    
   }
 }

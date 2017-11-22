@@ -32,9 +32,51 @@ module.exports = {
 
     showAns : function(req,res){
         console.log('in cont showAns',req.params.id);
-        Question.findOne({_id:req.params.id},function(err, question){
-            console.log(question);
+        Question.findOne({_id: req.params.id}).sort('likes').populate('answers').exec(function(err, question){
             res.json(question);
+        })
+
+        // Post.find({}).sort('test').exec(function(err, docs) { ... });
+    },
+
+    addAns : function(req,res){
+        
+            Question.findOne({_id: req.params.q_id}, function(err, question){
+                // data from form on the front end
+                var answer = new Answer({
+                    answer : req.body.answer,
+                    detail : req.body.detail,
+                    answerer : req.body.answerer,
+                    likes : 0
+                });
+                //  set the reference like this:
+                // answer._question = req.body.q_id;
+                // now save both to the DB
+                answer.save(function(err){
+                        question.answers.push(answer);
+                        question.save(function(err){
+                             if(err) {
+                                  console.log('Error');
+                             } else {
+                                  console.log('success');
+                             }
+                         });
+                 });
+            });
+    },
+
+    addLike : function(req,res){
+        console.log('answer id--------',req.params.ans_id);
+        Answer.findById(req.params.ans_id, function(err, answer){
+            answer.likes = answer.likes + 1;
+            answer.save(function(err){
+                if(err){
+                    console.log("something went wrong...");
+                }
+                else{
+                    console.log('added like in db...');
+                }
+            })
         })
     }
   

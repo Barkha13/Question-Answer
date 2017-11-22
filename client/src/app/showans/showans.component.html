@@ -1,3 +1,39 @@
-<p>
-  showans works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <a [routerLink]="['/dashboard']">Home</a>
+    <a href="/" style="margin-left: 1000px;">Logout</a>
+    <br><br><br>
+    <h1>Add Answer</h1>
+    <div style="width: 500px;">
+    <form #ansForm = "ngForm" style="text-align:right;" (ngSubmit)="onSubmit()" method="post">
+      Your Answer:: <textarea 
+      name="answer"
+      required
+      minlength="3"
+      [(ngModel)] = '_answer.ans'
+      #question = 'ngModel' 
+      ></textarea>
+      <span style="color:red" *ngIf="!question.valid">Answer is required!!(At least 10 Characters)</span><br><br>
+      
+      <br>
+      Supporting details for your answer (optional):: <textarea 
+      name="detail"
+      [(ngModel)] = '_answer.detail'
+      ></textarea><br>
+      <button name="cancel" >Cancel</button>&nbsp;
+      <button type="submit" name="submit" [disabled]="!ansForm.valid">Submit</button>
+      
+    </form>
+    </div>
+  </div>
+</body>
+</html>
