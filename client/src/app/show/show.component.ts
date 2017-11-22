@@ -23,11 +23,14 @@ export class ShowComponent implements OnInit {
       this.userId = params['id'];
       console.log(this.userId);
     });
-    
+
     this.question = this._apiService.showAns(this.userId,(data)=>{
       this.question = data;
-      console.log('the question is', this.question);
+      // console.log('the question is', this.question);
+      console.log('json que-----',this.questions);
+      
     });
+    
 
     this._apiService.allQues((data)=>{
       console.log(data);
@@ -36,9 +39,15 @@ export class ShowComponent implements OnInit {
   }
 
   onClick(answer_id){
-   
+    // this.sorting();
     this._apiService.like(answer_id);
     this.ngOnInit();
-    
   }
+
+  // sorting(){
+  //   this.questions.sort(function(a, b) {
+  //     console.log('sorting...')
+  //     return b.answers - a.answers;
+  // });
+  // }
 }

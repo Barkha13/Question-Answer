@@ -33,6 +33,7 @@ export class ShowansComponent implements OnInit {
       console.log(data);
       this.questions = data;
     });
+    
     this.router.navigate(['dashboard']);
   }
 }

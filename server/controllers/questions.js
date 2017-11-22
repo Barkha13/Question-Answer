@@ -26,15 +26,16 @@ module.exports = {
             }
             else{
                 console.log('added question in db...');
-            }
+            } 
         })
     },
 
     showAns : function(req,res){
         console.log('in cont showAns',req.params.id);
-        Question.findOne({_id: req.params.id}).sort('likes').populate('answers').exec(function(err, question){
+        Question.findOne({_id: req.params.id}).populate({path: 'answers', options: {sort : {'likes':-1}}}).exec(function(err, question){
             res.json(question);
         })
+
 
         // Post.find({}).sort('test').exec(function(err, docs) { ... });
     },
